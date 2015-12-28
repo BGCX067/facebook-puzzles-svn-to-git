@@ -1,0 +1,16 @@
+#!/usr/bin/perl
+die "$0 usage: $0 <filename> <dataPoints>\n" if $#ARGV < 1 ;# Must have at least two arguments
+print "Generating $ARGV[1] datapoints\n";
+open OUTFILE, ">$ARGV[0]" or die "Can't find $ARGV[0] : $!";
+
+for ($i=1; $i <= $ARGV[1]; $i++) {
+	print OUTFILE "$i ", &random_position, " ", &random_position, "\n"; 
+}
+close OUTFILE or die "Can not close $ARGV[0] : $!";
+
+sub random_position
+{
+  $prefix = int(rand(180));
+  $sufix = int(rand(99));
+  return "$prefix.$sufix"   
+};
